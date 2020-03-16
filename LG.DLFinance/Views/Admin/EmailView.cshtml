@@ -1,0 +1,161 @@
+﻿@model LG.DLFinance.ViewModels.EmailViewModel
+
+@{
+    Layout = null;
+}
+
+@using LG.DLFinance.Helpers
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Email View</title>
+    @Html.EmbedCss("~/Content/bootstrap.css")
+    @Html.EmbedCss("~/Content/Site.css")
+
+    <style type="text/css">
+
+        body, table, td, h3, h4, h5, h6, p {
+            font-family: Arial, Helvetica, sans-serif !important;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container body-content">
+        <h3>Dream League Finances - @Model.CurrentMonth</h3>
+        <hr />
+        <p>Hi all - Please see this month's Dream League Finance summary below.</p>
+        <br />
+        <p><h4 style="text-align:center">Summary of Money Owed</h4></p>
+        <br />
+
+        <table class="table">
+            <tr>
+                <th></th>
+                @foreach (var manager in Model.ManagerList)
+                {
+                    <th>@Html.DisplayFor(modelItem => manager.ManagerName)</th>
+                }
+            </tr>
+            <tr>
+                <td style="font-weight:bold">To end of @DateTime.Now.ToString("MMMM")</td>
+
+                @foreach (var manager in Model.ManagerList)
+                {
+                    Html.RenderAction("_CreditLineEmailMonth", "Finance", new { Manager = manager.ManagerId });
+                }
+            </tr>
+            <tr>
+                <td style="font-weight:bold">To end of Season</td>
+
+                @foreach (var manager in Model.ManagerList)
+                {
+                    Html.RenderAction("_CreditLineEmail", "Finance", new { Manager = manager.ManagerId });
+                }
+            </tr>
+        </table>
+        <h5><i>Positive Figures indicate you are in credit, negative you owe that amount to cover to stated point</i></h5>
+        <br />
+
+        @if (Model.monthTransactions.Count > 0)
+        {
+            <p><h4 style="text-align:center">Your Transactions in  @Model.CurrentMonth</h4></p>
+            <br />
+            <table class="table">
+                <tr>
+                    <th style="text-align:center">Week No</th>
+                    <th style="text-align:center">Transaction Date</th>
+                    <th style="text-align:center">Value</th>
+                    <th style="text-align:center">Transaction Type</th>
+                    <th style="text-align:center">Notes</th>
+
+                </tr>
+
+                @foreach (var trans in Model.monthTransactions)
+                {
+                    <tr>
+                        <td style="text-align:center">@Html.DisplayFor(modelItem => trans.Week.WeekNo)</td>
+                        <td style="text-align:center">@Html.DisplayFor(modelItem => trans.TransactionDate)</td>
+                        <td style="text-align:center">@Html.DisplayFor(modelItem => trans.Value)</td>
+                        <td style="text-align:center">@Html.DisplayFor(modelItem => trans.TransactionType)</td>
+                        <td style="text-align:center">@Html.DisplayFor(modelItem => trans.Notes)</td>
+                    </tr>
+                }
+            </table>
+        }
+
+
+        <br />
+        @if (Model.weeklyWinners.Count > 0)
+        {
+            <p><h4 style="text-align:center">Weekly Prizes Won in  @Model.CurrentMonth</h4></p>
+            <br />
+            <table class="table">
+                <tr>
+                    <th style="text-align:center">Week</th>
+                    <th style="text-align:center">Winner(s)</th>
+                </tr>
+
+                @foreach (var week in Model.weeklyWinners)
+
+                {
+                    if (!string.IsNullOrEmpty(week.Winners))
+                    {
+                        <tr>
+                            <td style="text-align:center">@Html.DisplayFor(modelItem => week.WeekNo)</td>
+                            <td style="text-align:center">@Html.DisplayFor(modelItem => week.Winners)</td>
+                        </tr>
+                    }
+                }
+
+
+            </table>
+        }
+        @if (Model.wonJackpot.Count > 0)
+        {
+            <p><h4 style="text-align:center">Jackpots Won</h4></p>
+            <br />
+            <table>
+
+                @foreach (var jackpot in Model.wonJackpot)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => jackpot.Manager.ManagerName)</td>
+                        <td>@Html.DisplayFor(modelItem => jackpot.Value)</td>
+                    </tr>
+                }
+            </table>
+            <br />
+            <hr />
+        }
+
+
+        @{int realJackpotValue = 0;}
+
+        @if ( Model.currentJackpot.JackpotValue < 50)
+        {
+            realJackpotValue = Model.currentJackpot.JackpotValue + 2;
+        }
+        else
+        {
+            realJackpotValue =  Model.currentJackpot.JackpotValue;
+        }
+
+        <p><h4 style="text-align:center">Current Jackpot Week @Model.CurrentWeek.WeekNo</h4></p>
+        <p style="text-align:center"><font size="12" color="blue">£@realJackpotValue</font></p>
+
+        <hr />
+        <p>For more financial details and information, visit the Dream League Finance website at <a href="https://www.dreamleaguefinance.co.uk/">www.dreamleaguefinance.co.uk</a>. Or for any other Dream League information visit <a href="https://www.dreamleaguefantasyfootball.co.uk/">www.dreamleaguefantasyfootball.co.uk</a></p>
+
+        <footer>
+            <p>Copyright @DateTime.Now.Year - GeordieFoo</p>
+        </footer>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿@model LG.DLFinance.ViewModels.PaymentViewModel
+
+
+@{
+                /**/
+
+                ViewBag.Title = "AdHoc";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Jackpot Payment</h2>
+<hr />
+<br />
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.PickedManager, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PickedManager, new SelectList(Model.ManagerList, "Value", "Text"), new { @class = "form-control" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.TransactionType)
+        <br />
+        <input class="button" type="submit" value="Pay Jackpot!" />
+    </div>
+}

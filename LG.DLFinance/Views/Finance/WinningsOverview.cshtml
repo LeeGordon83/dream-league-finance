@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "WinningsOverview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Winnings Overview</h2>
+
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#fivers-meeting" data-toggle="tab">Fivers By Meeting</a></li>
+    <li role="presentation"><a href="#fivers-manager" data-toggle="tab">Fivers By Manager</a></li>
+    <li role="presentation"><a href="#weekly-winners" data-toggle="tab">Weekly Winners</a></li>
+    <li role="presentation"><a href="#jackpot-summary" data-toggle="tab">Jackpot Summary</a></li>
+    <li role="presentation"><a href="#leaguecup-summary" data-toggle="tab">League/Cup Summary</a></li>
+</ul>
+
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="fivers-meeting">
+        <br />
+        <h4 style="text-align:center">Fivers By Meeting</h4>
+        <br />
+        <table class="table">
+            <tr>
+                <th>Month</th>
+                <th colspan="5" style="text-align:center">Winners</th>
+            </tr>
+
+            @{ List<string> months = ViewBag.MonthList as List<string>;}
+
+            @if (months?.Count > 0)
+            {
+            foreach (var item in months)
+            {
+                <tr>
+                    <td><bold>@item</bold></td>
+
+                    @{Html.RenderAction("_FiversMeetingLine", "Finance", new { Month = item });}
+                </tr>
+
+
+             }
+             }
+        </table>
+    </div>
+
+    <div class="tab-pane fade in" id="fivers-manager">
+        <br />
+        @{Html.RenderAction("_FiversManager", "Finance");}
+    </div>
+
+    <div class="tab-pane fade in" id="weekly-winners">
+        <br />
+        @{Html.RenderAction("_WeeklyWinners", "Finance", new { count = 0 });}
+    </div>
+
+    <div class="tab-pane fade in" id="jackpot-summary">
+        <br />
+        @{Html.RenderAction("_JackpotSummary", "Finance");}
+    </div>
+
+    <div class="tab-pane fade in" id="leaguecup-summary">
+        <br />
+        @{Html.RenderAction("_LeagueCupSummary", "Finance");}
+    </div>
+
+</div>
+

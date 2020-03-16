@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Transaction Menu</h2>
+<hr />
+@if (ViewBag.SeasonExist > 0)
+{
+<br>
+using (Html.BeginForm("Index", "Transaction"))
+{
+    <div class="form-horizontal col-md-10">
+        <div class="form-group">
+            <label class="form-label" for="select-box">Transaction Type: - </label>
+            <select class="form-control" id="select-box" name="transactionType">
+                <option disabled selected> -- select an option -- </option>
+                <option disabled>Incoming</option>
+                <option value="adhoc">Ad-Hoc Payment</option>
+                <option value="jackpotCarryOver">Jackpot Carry Over</option>
+                <option disabled>----------------</option>
+                <option disabled>Outgoing</option>
+                <option value="weekly">Weekly Prize</option>
+                <option value="fivers">Fivers</option>
+                <option value="jackpot">Jackpot</option>
+                <option value="end">League/Cups</option>
+            </select>
+            <br />
+            <input class="button" type="submit" value="Select" />
+            </div>
+        </div>
+}
+
+
+}
+else
+{
+<h2>No Current Season Exists</h2>
+}

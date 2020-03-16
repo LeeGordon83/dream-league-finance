@@ -1,0 +1,37 @@
+﻿@model LG.DLFinance.ViewModels.SmallPrizeListViewModel
+
+@{
+    /**/
+
+    ViewBag.Title = "Weekly";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Weekly Prize</h2>
+<hr />
+<br />
+@using (Html.BeginForm("weeklyPrize", "Transaction", FormMethod.Post))
+{
+
+    <table>
+        @for (int i = 0; i < Model.SmallPrizeList.Count; i++)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.SmallPrizeList[i].ManagerName)
+                    @Html.HiddenFor(modelItem => Model.SmallPrizeList[i].ManagerName)
+                </td>
+                <td></td>
+                <td>
+                    @Html.HiddenFor(modelItem => Model.SmallPrizeList[i].ManagerId)
+                </td>
+                <td style="padding-left:20px">
+                    @Html.EditorFor(modelItem => Model.SmallPrizeList[i].Checkbox)
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    <input class="button" type="submit" value="Select" />
+}
+<br />

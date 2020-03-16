@@ -1,0 +1,26 @@
+﻿@model IEnumerable<LG.DLFinance.Models.Manager>
+
+
+@{
+    ViewBag.Title = "AdHoc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Select Email to View</h2>
+<hr />
+<br />
+@using (Html.BeginForm("EmailView", "Admin"))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Preview Email For: -</h4>
+
+    <div>
+        @Html.DropDownList("SelectedManager", (SelectList)ViewBag.ManagerList, "All")
+    </div>
+    <br />
+
+    <input class="button" type="submit" value="Select" />
+</div>
+}

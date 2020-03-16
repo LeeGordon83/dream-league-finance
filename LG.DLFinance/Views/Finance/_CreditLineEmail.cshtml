@@ -1,0 +1,12 @@
+﻿@model LG.DLFinance.ViewModels.CreditLineViewModel
+
+@if (Model.TotalCredits > 0)
+    {
+<td><font color="blue">@Html.DisplayFor(model => Model.TotalCredits)</font></td>
+    }
+else
+    {
+<td><font color="red">@Html.DisplayFor(model => Model.TotalCredits)</font></td>
+    }
+
+

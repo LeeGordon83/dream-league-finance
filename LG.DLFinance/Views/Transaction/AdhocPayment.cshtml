@@ -1,0 +1,48 @@
+﻿@model LG.DLFinance.ViewModels.PaymentViewModel
+
+
+@{
+    ViewBag.Title = "AdHoc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ad-Hoc Payment</h2>
+<hr />
+<br />
+
+@using (Html.BeginForm())
+{
+<div class="form-horizontal">
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PickedManager, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.PickedManager, new SelectList(Model.ManagerList, "Value", "Text"), new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Notes, 3, 50, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Notes, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model.TransactionType)
+    <br />
+    <div class="form-group">
+        <div class="col-md-10">
+            <input class="button" type="submit" value="Pay" />
+        </div>
+    </div>
+</div>
+}

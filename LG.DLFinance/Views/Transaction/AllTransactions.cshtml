@@ -1,0 +1,96 @@
+﻿@model PagedList<LG.DLFinance.Models.Transaction>
+
+@{
+    ViewBag.Title = "AllTransactions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using PagedList.Mvc;
+@using PagedList;
+
+<h2>All Transactions</h2>
+
+<br />
+@using (Html.BeginForm("AllTransactions", "Transaction"))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Filter By: -</h4>
+    <h5>Manager</h5>
+    <div>
+        @Html.DropDownList("ManagerList", (SelectList)ViewBag.ManagerList, "All")
+    </div>
+
+    <h5>Month</h5>
+    <div>
+        @Html.DropDownList("MonthList", (SelectList)ViewBag.MonthList, "All")
+    </div>
+    <br />
+    <input class="button" type="submit" value="Select" />
+</div>
+}
+<br />
+<table class="table">
+    <tr>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model[0].Manager.ManagerName)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model[0].Value)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model[0].TransactionType)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model[0].TransactionDate)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model[0].Week.WeekNo)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model[0].Notes)
+        </th>
+        @if (User.IsInRole("Admin"))
+        {
+            <th style="text-align:center"></th>
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td style="text-align:center">
+                @Html.DisplayFor(modelItem => item.Manager.ManagerName)
+            </td>
+            <td style="text-align:center">
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td style="text-align:center">
+                @Html.DisplayFor(modelItem => item.TransactionType)
+            </td>
+            <td style="text-align:center">
+                @Html.DisplayFor(modelItem => item.TransactionDate)
+            </td>
+            <td style="text-align:center">
+                @Html.DisplayFor(modelItem => item.Week.WeekNo)
+            </td>
+            <td style="text-align:center">
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td style="text-align:center">
+                    @Html.ActionLink("Edit", "editTransaction", new { TransactionId = item.TransactionId }) |
+                    @Html.ActionLink("Delete", "deleteTransaction", new { TransactionId = item.TransactionId })
+                </td>
+            }
+        </tr>
+    }
+
+</table>
+
+<div class="float-left clear-left">
+    @Html.PagedListPager(Model, page => Url.Action("AllTransactions", new { page, pageSize = Model.PageSize }))
+    Showing @(Model.TotalItemCount < Model.FirstItemOnPage ? 0 : Model.FirstItemOnPage) to @Model.LastItemOnPage of @Model.TotalItemCount Transactions
+</div>

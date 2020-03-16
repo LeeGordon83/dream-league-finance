@@ -1,0 +1,112 @@
+﻿@model LG.DLFinance.ViewModels.CreditLineViewModel
+
+@if (ViewBag.CurrentMonth == "August")
+{
+    if (Model.AugustTotalCredit > 0)
+    {
+        <td><font color="blue">@Html.DisplayFor(model => Model.AugustTotalCredit)</font></td>
+    }
+    else
+    {
+        <td><font color="red">@Html.DisplayFor(model => Model.AugustTotalCredit)</font></td>
+    }
+}
+
+@if (ViewBag.CurrentMonth == "September")
+{
+    if (Model.SeptemberTotalCredit > 0)
+    {
+        <td><font color="blue">@Html.DisplayFor(model => Model.SeptemberTotalCredit)</font></td>
+    }
+    else
+    {
+        <td><font color="red">@Html.DisplayFor(model => Model.SeptemberTotalCredit)</font></td>
+    }
+}
+
+@if (ViewBag.CurrentMonth == "October")
+{
+    if (Model.OctoberTotalCredit > 0)
+    {
+        <td><font color="blue">@Html.DisplayFor(model => Model.OctoberTotalCredit)</font></td>
+    }
+    else
+    {
+        <td><font color="red">@Html.DisplayFor(model => Model.OctoberTotalCredit)</font></td>
+    }
+}
+
+@if (ViewBag.CurrentMonth == "November")
+{
+    if (Model.NovemberTotalCredit > 0)
+    {
+        <td><font color="blue">@Html.DisplayFor(model => Model.NovemberTotalCredit)</font></td>
+    }
+    else
+    {
+        <td><font color="red">@Html.DisplayFor(model => Model.NovemberTotalCredit)</font></td>
+    }
+}
+
+@if (ViewBag.CurrentMonth == "December")
+{
+    if (Model.DecemberTotalCredit > 0)
+    {
+        <td><font color="blue">@Html.DisplayFor(model => Model.DecemberTotalCredit)</font></td>
+    }
+    else
+    {
+        <td><font color="red">@Html.DisplayFor(model => Model.DecemberTotalCredit)</font></td>
+    }
+}
+
+@if (ViewBag.CurrentMonth == "January")
+{
+    if (Model.JanuaryTotalCredit > 0)
+    {
+        <td><font color="blue">@Html.DisplayFor(model => Model.JanuaryTotalCredit)</font></td>
+    }
+    else
+    {
+        <td><font color="red">@Html.DisplayFor(model => Model.JanuaryTotalCredit)</font></td>
+    }
+}
+
+@if (ViewBag.CurrentMonth == "February")
+{
+    if (Model.FebruaryTotalCredit > 0)
+    {
+        <td><font color="blue">@Html.DisplayFor(model => Model.FebruaryTotalCredit)</font></td>
+    }
+    else
+    {
+        <td><font color="red">@Html.DisplayFor(model => Model.FebruaryTotalCredit)</font></td>
+    }
+}
+@if (ViewBag.CurrentMonth == "March")
+{
+    if (Model.MarchTotalCredit > 0)
+    {
+        <td><font color="blue">@Html.DisplayFor(model => Model.MarchTotalCredit)</font></td>
+    }
+    else
+    {
+        <td><font color="red">@Html.DisplayFor(model => Model.MarchTotalCredit)</font></td>
+    }
+}
+
+@{decimal AprMay = Model.AprilTotalCredit + Model.MayTotalCredit;}
+
+@if (ViewBag.CurrentMonth == "April" || ViewBag.CurrentMonth == "May")
+{
+    if (AprMay > 0)
+    {
+        <td><font color="blue">@AprMay</font></td>
+    }
+    else
+    {
+        <td><font color="red">@AprMay</font></td>
+    }
+}
+
+

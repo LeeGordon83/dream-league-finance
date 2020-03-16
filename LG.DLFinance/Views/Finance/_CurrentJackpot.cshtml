@@ -1,0 +1,29 @@
+﻿@model LG.DLFinance.Models.Jackpot
+
+
+@if (Model != null)
+{
+<div>
+   <p style="text-align:center"><font size="4" color="black">Jackpot for Week @ViewBag.CurrentWeek</font></p>
+</div>
+<div>
+    @{int realJackpotValue = 0;}
+
+    @if (Model.JackpotValue < 50)
+    {
+        realJackpotValue = Model.JackpotValue + 2;
+    }
+    else
+    {
+        realJackpotValue = Model.JackpotValue;
+    }
+    <p style="text-align:center"><font size="12" color="blue">£@realJackpotValue</font></p>
+</div>
+
+}
+else
+{
+<div>
+    <p style="text-align:center"><font size="12" color="blue">£0</font></p>
+</div>
+}

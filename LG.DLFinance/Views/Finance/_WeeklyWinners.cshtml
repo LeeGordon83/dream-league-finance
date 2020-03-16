@@ -1,0 +1,28 @@
+﻿@model IEnumerable<LG.DLFinance.ViewModels.WeeklyWinnerSummaryViewModel>
+
+@if (Model != null)
+{
+    
+<h4 style="text-align:center">@ViewBag.NumofWinners</h4>
+    <br />
+    <table class="table tableNoLine">
+        <tr>
+            <th style="text-align:center">Week</th>
+            <th style="text-align:center">Winner(s)</th>
+        </tr>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="text-align:center">@Html.DisplayFor(modelItem => item.WeekNo)</td>
+                    <td style="text-align:center">@Html.DisplayFor(modelItem => item.Winners)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+
+    <h3 style="text-align:center">No Weekly Prizes Won Yet</h3>
+}

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<LG.DLFinance.Models.Transaction>
+
+
+@{
+    ViewBag.Title = "_JackpotWinners";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Jackpot Winners</h2>
+
+<table>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Manager.ManagerName)</th>
+        <th>@Html.DisplayNameFor(model => model.Value)</th>
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@Html.DisplayFor(model => item.Manager.ManagerName)</td>
+            <td>@Html.DisplayFor(model => item.Value)</td>
+        </tr>
+        }
+    </tbody>
+</table>
+

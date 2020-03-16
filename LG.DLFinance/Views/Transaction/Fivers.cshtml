@@ -1,0 +1,69 @@
+﻿@model LG.DLFinance.ViewModels.SmallPrizeListViewModel
+
+@{
+                /**/
+
+                ViewBag.Title = "Fivers";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Fivers</h2>
+<hr />
+<br />
+    @using (Html.BeginForm("fivers", "Transaction", FormMethod.Post, new { id = "five" }))
+    {
+
+<table>
+    @for (int i = 0; i < Model.SmallPrizeList.Count; i++)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.SmallPrizeList[i].ManagerName)
+                @Html.HiddenFor(modelItem => Model.SmallPrizeList[i].ManagerName)
+            </td>
+            <td></td>
+            <td>
+                @Html.HiddenFor(modelItem => Model.SmallPrizeList[i].ManagerId)
+            </td>
+            <td style="padding-left:20px">
+                @Html.EditorFor(modelItem => Model.SmallPrizeList[i].Checkbox, new {@class = "single-checkbox" })
+            </td>
+        </tr>
+    }
+</table>
+        <br />
+    <input class="button" type="submit" value="Select" />
+     }
+    <br />
+
+<script>
+    $(document).ready(function () {
+         var checked = 0
+
+        $('input:checkbox').on('change', function () {
+
+            if ($(this).is(':checked')) {
+                if (checked < 5) {
+                    checked = checked + 1
+                }
+                else {
+                    alert("5 already checked")
+                    this.checked = false;
+                }
+            }
+            else {
+                
+                checked = checked - 1
+            }
+        });
+
+        $("#five").submit(function (event) {
+            if (checked != 5) {
+                event.preventDefault();
+                alert("Select five managers")
+            }
+        });
+        
+
+    });
+</script>

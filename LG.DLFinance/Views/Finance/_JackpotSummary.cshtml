@@ -1,0 +1,50 @@
+﻿@model LG.DLFinance.ViewModels.JackpotViewModel
+
+<br />
+<h4 style="text-align:center">Jackpot Summary</h4>
+<br />
+<div class="col-md-6">
+    <h5>All Jackpots</h5>
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.jackpots[0].JackpotStartWk)</th>
+            <th>@Html.DisplayNameFor(model => model.jackpots[0].JackpotEndWk)</th>
+            <th>@Html.DisplayNameFor(model => model.jackpots[0].JackpotValue)</th>
+            <th>@Html.DisplayNameFor(model => model.jackpots[0].Active)</th>
+        </tr>
+        <tbody>
+            @foreach(var item in Model.jackpots)
+            {
+            <tr>
+                <td style="text-align:center">@Html.DisplayFor(modelItem => item.JackpotStartWk)</td>
+                <td style="text-align:center">@Html.DisplayFor(modelItem => item.JackpotEndWk)</td>
+                <td style="text-align:center">@Html.DisplayFor(modelItem => item.JackpotValue)</td>
+                <td style="text-align:center">@Html.DisplayFor(modelItem => item.Active)</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+<div class="col-md-6">
+    <h5>Jackpots Won</h5>
+    <table class="table">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.transactions[0].TransactionDate)</th>
+            <th>@Html.DisplayNameFor(model => model.transactions[0].Manager.ManagerName)</th>
+            <th>@Html.DisplayNameFor(model => model.transactions[0].Week.WeekNo)</th>
+            <th>@Html.DisplayNameFor(model => model.transactions[0].Value)</th>
+        </tr>
+        <tbody>
+            @foreach(var item in Model.transactions)
+            {
+                <tr>
+                    <td style="text-align:center">@Html.DisplayFor(modelItem => item.TransactionDate)</td>
+                    <td style="text-align:center">@Html.DisplayFor(modelItem => item.Manager.ManagerName)</td>
+                    <td style="text-align:center">@Html.DisplayFor(modelItem => item.Week.WeekNo)</td>
+                    <td style="text-align:center">@Html.DisplayFor(modelItem => item.Value)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>

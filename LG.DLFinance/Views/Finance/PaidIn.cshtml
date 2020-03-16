@@ -1,0 +1,50 @@
+﻿@model LG.DLFinance.ViewModels.PaidInViewModel
+
+
+@{
+    ViewBag.Title = "PaidIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Paid In Overview</h2>
+
+<br />
+@if (Model.ManagerList.Count > 0 && Model.MonthList.Count > 0)
+{
+<table class="table" border="1">
+    <tr>
+        <th ></th>
+
+        @foreach (var month in Model.MonthList)
+        {
+            <th colspan="2" style="text-align:center">@Html.DisplayFor(model => month)</th>
+
+        }
+    </tr>
+    <tr>
+        <th></th>
+        @foreach (var month in Model.MonthList)
+        {
+            <th style="text-align:center">Paid In</th>
+            <th style="text-align:center">Won</th>
+        }
+    </tr>
+    <tbody>
+        @foreach (var manager in Model.ManagerList)
+        {
+        <tr>
+            <td> @Html.DisplayFor(model => manager.ManagerName)</td>
+            @{Html.RenderAction("_PaidInLine", "Finance", new { Manager = manager.ManagerId });}
+        </tr>
+        }
+    </tbody>
+
+
+</table>
+
+ 
+}
+else
+{
+<h2>No Paid In Data</h2>
+}

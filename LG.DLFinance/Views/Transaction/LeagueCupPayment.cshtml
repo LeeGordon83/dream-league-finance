@@ -1,0 +1,66 @@
+﻿@model LG.DLFinance.ViewModels.LgCupWinnersViewModel
+
+@{
+    ViewBag.Title = "LeagueCupPayment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>League and Cup Payments</h2>
+
+<hr />
+<br />
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <table>
+            <tr>
+                <th style="text-align:center" colspan="3">Cup</th>
+
+            </tr>
+            <tr><th><br /></th></tr>
+            <tr>
+                <th>Prize</th>
+                <th>@Html.DisplayNameFor(model => model.lgCupWinnersLineViewModels[0].PrizeSelection.PrizeAmount)</th>
+                <th></th>
+            </tr>
+            @for (int i = 0; i < Model.lgCupWinnersLineViewModels.Count(); i++)
+            {
+                if (Model.lgCupWinnersLineViewModels[i].PrizeSelection.CupPrize == true)
+                {
+                    <tr>
+                        @Html.HiddenFor(modelItem => Model.lgCupWinnersLineViewModels[i].PrizeSelection.PrizesId)
+                        <td>@Html.DisplayFor(modelItem => Model.lgCupWinnersLineViewModels[i].PrizeSelection.PrizeType)</td>
+                        <td>@Html.DisplayFor(modelItem => Model.lgCupWinnersLineViewModels[i].PrizeSelection.PrizeAmount)</td>
+                        <td>@Html.DropDownListFor(model => Model.lgCupWinnersLineViewModels[i].PickedManager, new SelectList(Model.lgCupWinnersLineViewModels[i].ManagerList, "Value", "Text"), new { @class = "form-control" })</td>
+                    </tr>
+                }
+            }
+            <tr><th><br /></th></tr>
+            <tr>
+                <th style="text-align:center" colspan="3">League</th>
+
+            </tr>
+            <tr><th><br /></th></tr>
+            <tr>
+                <th>Prize</th>
+                <th>@Html.DisplayNameFor(model => model.lgCupWinnersLineViewModels[0].PrizeSelection.PrizeAmount)</th>
+                <th></th>
+            </tr>
+            @for (int x = 0; x < Model.lgCupWinnersLineViewModels.Count(); x++)
+            {
+                if (Model.lgCupWinnersLineViewModels[x].PrizeSelection.LeaguePrize == true)
+                {
+                    <tr>
+                        @Html.HiddenFor(modelItem => Model.lgCupWinnersLineViewModels[x].PrizeSelection.PrizesId)
+                        <td>@Html.DisplayFor(modelItem => Model.lgCupWinnersLineViewModels[x].PrizeSelection.PrizeType)</td>
+                        <td>@Html.DisplayFor(modelItem => Model.lgCupWinnersLineViewModels[x].PrizeSelection.PrizeAmount)</td>
+                        <td>@Html.DropDownListFor(model => model.lgCupWinnersLineViewModels[x].PickedManager, new SelectList(Model.lgCupWinnersLineViewModels[x].ManagerList, "Value", "Text"), new { @class = "form-control" })</td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <br />
+    <input class="button" type="submit" value="Select" />
+}

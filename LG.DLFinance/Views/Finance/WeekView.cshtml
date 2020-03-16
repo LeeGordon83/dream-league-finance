@@ -1,0 +1,46 @@
+﻿@model IEnumerable<LG.DLFinance.Models.Week>
+
+@{
+    ViewBag.Title = "weekView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Week View</h2>
+
+
+<table class="table">
+    <tr>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.WeekNo)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.WeekStartDate)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.WeekEndDate)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.WeekCompleted)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td style="text-align:center">
+            @Html.DisplayFor(modelItem => item.WeekNo)
+        </td>
+        <td style="text-align:center">
+            @Html.DisplayFor(modelItem => item.WeekStartDate)
+        </td>
+        <td style="text-align:center">
+            
+            @Html.DisplayFor(modelItem => item.WeekEndDate)
+        </td>
+        <td style="text-align:center">
+            @Html.DisplayFor(modelItem => item.WeekCompleted)
+        </td>
+
+    </tr>
+}
+
+</table>

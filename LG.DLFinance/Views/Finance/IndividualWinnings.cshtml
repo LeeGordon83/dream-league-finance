@@ -1,0 +1,43 @@
+﻿@model IEnumerable<LG.DLFinance.Models.Manager>
+
+
+@{
+    ViewBag.Title = "Credit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Individual Winnings</h2>
+@if (Model.Count() > 0)
+{
+<br />
+<table class="table" border="1">
+    <tr>
+        <th style="background-color:black"></th>
+        <th style="text-align:center">Fivers</th>
+        <th style="text-align:center">Weekly</th>
+        <th style="text-align:center">Jackpot</th>
+        <th style="text-align:center">Cups</th>
+        <th style="text-align:center">League</th>
+        <th style="text-align:center">Total (Overall Won)</th>
+        <th></th>
+        <th style="text-align:center">Payout</th>
+
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ManagerName)
+            </td>
+            @{Html.RenderAction("_IndividualLine", "Finance", new { Manager = item.ManagerId });}
+        </tr>
+                }
+        </tbody>
+</table>
+ }
+else
+{
+<h2>No Individual Winnings Data</h2>
+}

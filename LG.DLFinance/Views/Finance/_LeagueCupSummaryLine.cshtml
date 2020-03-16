@@ -1,0 +1,10 @@
+﻿@model LG.DLFinance.Models.Transaction
+
+@if (Model?.Manager?.ManagerName != null)
+{
+<td style="text-align:center">@Html.DisplayFor(model => Model.Manager.ManagerName)</td>
+}
+else
+{
+<td style="text-align:center">N/A</td>
+}

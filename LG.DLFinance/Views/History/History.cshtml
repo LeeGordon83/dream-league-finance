@@ -1,0 +1,62 @@
+﻿@model IEnumerable<LG.DLFinance.Models.History>
+
+@{
+    ViewBag.Title = "History";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>History</h2>
+<br />
+
+<table class="table">
+    <tr>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.year)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.mostMoney)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.mostFivers)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.leastFivers)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.mostWeekly)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.leastWeekly)
+        </th>
+        <th style="text-align:center">
+            @Html.DisplayNameFor(model => model.biggestJackpot)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td style="text-align:center">
+            @Html.DisplayFor(modelItem => item.year)
+        </td>
+        <td style="text-align:center">
+            @Html.DisplayFor(modelItem => item.mostMoney)
+        </td>
+        <td style="text-align:center">
+            @Html.DisplayFor(modelItem => item.mostFivers)
+        </td>
+        <td style="text-align:center">
+            @Html.DisplayFor(modelItem => item.leastFivers)
+        </td>
+        <td style="text-align:center">
+            @Html.DisplayFor(modelItem => item.mostWeekly)
+        </td>
+        <td style="text-align:center">
+            @Html.DisplayFor(modelItem => item.leastWeekly)
+        </td>
+        <td style="text-align:center">
+            @Html.DisplayFor(modelItem => item.biggestJackpot)
+        </td>
+    </tr>
+}
+
+</table>

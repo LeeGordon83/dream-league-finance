@@ -1,0 +1,31 @@
+﻿@model LG.DLFinance.ViewModels.SeasonViewModel
+
+<h4>Current Season</h4>
+<br />
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(model => model.WeekStartDate, "Start Week", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <p class="form-control-static"> @Model.WeekStartDate.ToShortDateString()</p> 
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumberofWeeks, "Number of Weeks", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <p class="form-control-static"> @Model.NumberofWeeks</p>
+    </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumberofManagers, "Number of Managers", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        <p class="form-control-static">@Model.NumberofManagers</p>
+    </div>
+    </div>
+</div>
+
+<input type="button" class="btn btn-default" value="End Season" onclick="location.href='@Url.Action("Delete", "Admin")'">
+
+
+

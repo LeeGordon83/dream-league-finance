@@ -1,0 +1,55 @@
+﻿@model IEnumerable<LG.DLFinance.Models.Manager>
+
+@Scripts.Render("~/bundles/jqueryui")
+
+<h2>Managers</h2>
+<br />
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ManagerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManagerName)
+                </td>
+                <td>
+                @foreach (var email in item.Email)
+                {
+                    @Html.DisplayFor(modelItem => email.EmailAddress)
+                    <br />
+                }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+
+
+                <td>
+                    @Html.ActionLink("Edit", "EditManager","Admin", new { managerId = item.ManagerId }, null) |
+                    @Html.ActionLink("Delete", "DeleteManager", "Admin" , new { managerId = item.ManagerId }, null)
+                </td>
+      
+            </tr>
+        }
+    </tbody>
+    </table>
+    <br />
+       @Html.ActionLink("Add Manager", "AddManager", "Admin")
+    
+

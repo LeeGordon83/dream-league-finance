@@ -1,0 +1,85 @@
+﻿@model LG.DLFinance.ViewModels.BalanceSheetViewModel
+
+@{
+    ViewBag.Title = "paidIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Balance Overview</h2>
+@if (Model.WeeklyFees > 0)
+{
+
+<br />
+
+<table class="table">
+    <tr>
+        <th>IN</th>
+        <th>Amount Expected</th>
+        <th>Actual Amount</th>
+        <th></th>
+        <th>OUT</th>
+        <th>Amount Expected</th>
+        <th>Amount Paid</th>
+    </tr>
+    <tbody>
+        <tr>
+            <td>@Html.LabelFor(model => Model.WeeklyFees)</td>
+            <td>@Html.DisplayFor(model => Model.WeeklyFees)</td>
+            <td></td>
+            <td></td>
+            <td>@Html.LabelFor(model => Model.WeeklyPrize)</td>
+            <td>@Html.DisplayFor(model => Model.WeeklyPrize)</td>
+            <td>@Html.DisplayFor(model => Model.WeeklyPrizeOut)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => Model.JoiningFees)</td>
+            <td>@Html.DisplayFor(model => Model.JoiningFees)</td>
+            <td></td>
+            <td></td>
+            <td>@Html.LabelFor(model => Model.FiverDraws)</td>
+            <td>@Html.DisplayFor(model => Model.FiverDraws)</td>
+            <td>@Html.DisplayFor(model => Model.FiverDrawsOut)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => Model.CupEntry)</td>
+            <td>@Html.DisplayFor(model => Model.CupEntry)</td>
+            <td></td>
+            <td></td>
+            <td>@Html.LabelFor(model => Model.EndOfSeason)</td>
+            <td>@Html.DisplayFor(model => Model.EndOfSeason)</td>
+            <td>@Html.DisplayFor(model => Model.EndOfSeasonOut)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => Model.LeagueCupEntry)</td>
+            <td>@Html.DisplayFor(model => Model.LeagueCupEntry)</td>
+            <td></td>
+            <td></td>
+            <td>@Html.LabelFor(model => Model.Jackpot)</td>
+            <td>@Html.DisplayFor(model => Model.Jackpot)</td>
+            <td>@Html.DisplayFor(model => Model.JackpotOut)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => Model.JackpotCarryOver)</td>
+            <td>@Html.DisplayFor(model => Model.JackpotCarryOver)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td>@Html.LabelFor(model => Model.TotalIn)</td>
+            <td style="color:blue">@Html.DisplayFor(model => Model.TotalIn)</td>
+            <td style="color:red">@Html.DisplayFor(model => Model.CurrentTotalIn)</td>
+            <td></td>
+            <td>@Html.LabelFor(model => Model.TotalOut)</td>
+            <td style="color:blue">@Html.DisplayFor(model => Model.TotalOut)</td>
+            <td style="color:red">@Html.DisplayFor(model => Model.CurrentTotalOut)</td>
+        </tr>
+    </tbody>
+</table>
+}
+else
+{
+<h2>No Balance Data</h2>
+}

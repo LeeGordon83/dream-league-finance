@@ -1,0 +1,41 @@
+﻿@model IEnumerable<LG.DLFinance.Models.Manager>
+
+<h4 style="text-align:center">Fivers By Manager</h4>
+<br />
+    <div class="container">
+        <div class="col-md-6">
+            <table class="table">
+                <tr>
+ 
+                </tr>
+                @{int num = (int)ViewBag.MgrMidPoint;}
+
+                <tbody>
+                    @foreach (var item in Model.OrderBy(x => x.ManagerName).Take(num))
+                    {
+                        <tr>
+                       
+                                @{ Html.RenderAction("_FiversManagerLine", "Finance", new { Manager = item }); }
+                          
+                        </tr>
+                    }
+
+</table>
+            </div>
+        <div class="col-md-6">
+            <table class="table">
+                <tr>
+
+                </tr>
+                <tbody>
+                    @foreach (var item in Model.OrderBy(x => x.ManagerName).Skip(num).Take(num))
+                    {
+                        <tr>
+                            @{ Html.RenderAction("_FiversManagerLine", "Finance", new { Manager = item }); }
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+</div>

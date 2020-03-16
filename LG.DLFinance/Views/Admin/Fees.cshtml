@@ -1,0 +1,41 @@
+﻿@model IEnumerable<LG.DLFinance.Models.Fees>
+
+@{
+    ViewBag.Title = "Fees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Fees</h2>
+<br />
+<p>
+    @Html.ActionLink("Create New", "createFee")
+</p>
+<hr />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FeeType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FeeAmount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FeeType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FeeAmount)
+        </td>
+        @Html.HiddenFor(modelItem => item.FeesId)
+        <td>
+            @Html.ActionLink("Edit", "editFee", new { feesId = item.FeesId })
+        </td>
+
+    </tr>
+}
+
+</table>

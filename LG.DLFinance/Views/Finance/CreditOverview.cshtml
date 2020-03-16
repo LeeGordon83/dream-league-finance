@@ -1,0 +1,49 @@
+﻿@model LG.DLFinance.ViewModels.PaidInViewModel
+
+
+@{
+    ViewBag.Title = "Credit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Credit Overview</h2>
+@if (Model.MonthList.Count > 0 && Model.ManagerList.Count > 0)
+{
+<br />
+<table class="table" border="1">
+    <tr>
+        <th style="background-color:black"></th>
+        @foreach (var month in Model.MonthList)
+        {
+            <th style="text-align:center">@Html.DisplayFor(model => month)</th>
+
+        }
+        <th>End of Season</th>
+    </tr>
+
+    <tbody>
+        @foreach (var manager in Model.ManagerList)
+        {
+        <tr>
+            <td> @Html.DisplayFor(model => manager.ManagerName)</td>
+            @{Html.RenderAction("_CreditLine", "Finance", new { Manager = manager.ManagerId });}
+        </tr>
+                }
+
+        <tr></tr>
+        <tr>
+            <td style="color:blue" >Cost Per Month</td>
+            @{Html.RenderAction("_OwedLine", "Finance");}
+        </tr>
+  
+
+    </tbody>
+
+
+</table>
+}
+
+else
+{
+<h2>No Credit Data</h2>
+}
