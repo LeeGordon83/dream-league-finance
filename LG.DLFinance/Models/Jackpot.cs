@@ -15,7 +15,7 @@ namespace LG.DLFinance.Models
         [Display(Name = "Jackpot Start Week")]
         public int JackpotStartWk { get; set; }
         [Display(Name = "Jackpot End Week")]
-        public int JackpotEndWk { get; set; }
+        public int? JackpotEndWk { get; set; }
         [Display(Name = "Jackpot Amount")]
         public int JackpotValue { get; set; }
         [Display(Name = "Jackpot Active?")]
@@ -23,7 +23,6 @@ namespace LG.DLFinance.Models
 
         public Jackpot()
         {
-
             JackpotValue = 0;
             Active = true;
         }

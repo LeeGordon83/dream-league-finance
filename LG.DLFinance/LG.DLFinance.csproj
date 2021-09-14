@@ -313,6 +313,10 @@
     <Compile Include="Migrations\201905071143229_changes.Designer.cs">
       <DependentUpon>201905071143229_changes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101070910431_jackpotendNullable.cs" />
+    <Compile Include="Migrations\202101070910431_jackpotendNullable.Designer.cs">
+      <DependentUpon>202101070910431_jackpotendNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\MeetingAPI.cs" />
     <Compile Include="Models\History.cs" />
@@ -536,7 +540,10 @@
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
     <None Include="Properties\PublishProfiles\LGDLFinance - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\LGDLFinance - FTP1.pubxml" />
+    <None Include="Properties\PublishProfiles\LGDLFinance - ReadOnly - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\LGDLFinance - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\LGDLFinance - Web Deploy1.pubxml" />
     <None Include="Properties\PublishProfiles\LGDLFinance - Web Deploy2.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -816,6 +823,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905071143229_changes.resx">
       <DependentUpon>201905071143229_changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101070910431_jackpotendNullable.resx">
+      <DependentUpon>202101070910431_jackpotendNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
